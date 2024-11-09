@@ -18,10 +18,10 @@ ENV APP_ENV=prod \
   DB_HOST=localhost
 
 # Expose the port that the FastAPI app runs on
-EXPOSE 8000
+EXPOSE 8080
 
 # Command to run the FastAPI application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
 
 # Healthcheck to ensure the container is running
-HEALTHCHECK CMD curl --fail http://localhost:8000/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:8080/health || exit 1
