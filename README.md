@@ -95,6 +95,10 @@ To run the application locally, make sure you have Python installed. Then follow
 
 Code will be deployed to Google Cloud Run upon merging of Pull Requests.
 
+## Security
+
+SNYK will automatically check the container and requirements file for security vulnerabilities when opening a Pull Request.
+
 ## License
 
 This project is licensed under the MIT License. See the License file for details.
