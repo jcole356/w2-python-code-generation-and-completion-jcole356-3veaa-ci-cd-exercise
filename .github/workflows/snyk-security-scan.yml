@@ -10,10 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions@master
-        with:
-          args: test --file=requirements.txt
+        uses: snyk/actions/python@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
