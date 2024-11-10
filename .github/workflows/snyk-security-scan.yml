@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions@master
+        uses: snyk/actions/docker@master
         with:
           args: test --file=Dockerfile --severity-threshold=high
         env:
