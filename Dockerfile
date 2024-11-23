@@ -19,6 +19,12 @@ COPY newrelic.ini /app/newrelic.ini
 # Set the New Relic configuration file as an environment variable
 ENV NEW_RELIC_CONFIG_FILE=/app/newrelic.ini
 
+# Get environment variable for New Relic license key
+ARG NEW_RELIC_LICENSE_KEY
+
+# Set environment variable for New Relic license key
+ENV NEW_RELIC_LICENSE_KEY=$NEW_RELIC_LICENSE_KEY
+
 # Set environment variables
 ENV APP_ENV=prod \
   DB_HOST=localhost
