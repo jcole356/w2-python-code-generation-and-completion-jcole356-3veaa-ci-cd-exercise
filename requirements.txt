@@ -1,5 +1,6 @@
 fastapi
-uvicorn[standard]
-sqlalchemy
-pydantic-settings
 loguru
+newrelic=10.3.0
+pydantic-settings
+sqlalchemy
+uvicorn[standard]
