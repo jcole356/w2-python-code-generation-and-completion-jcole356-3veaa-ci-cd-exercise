@@ -97,6 +97,15 @@ To run the application with New Relic monitoring enabled, run the following:
 newrelic-admin run-program uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
+### With Docker
+
+1. `docker build --build-arg NEW_RELIC_LICENSE_KEY={set actual key here} -t taskmaster_api .`
+2. `docker run -d -p 8080:8080 taskmaster_api`
+
+**Note:** it is not safe to run the app in production with environment variables set this way
+
+[See Docker Docs](https://docs.docker.com/reference/build-checks/secrets-used-in-arg-or-env/)
+
 ## License
 
 This project is licensed under the MIT License. See the License file for details.
