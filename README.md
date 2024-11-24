@@ -3,6 +3,7 @@
 This project is a Project Management API built with FastAPI, SQLAlchemy, and SQLite. The API allows users to manage projects and their associated tickets.
 
 ## Folder Structure
+
 ```bash
 app/
 ├── api/
@@ -34,6 +35,7 @@ APP_ENV=dev
 ## Using the Dockerfile
 
 ### Build the Docker Image
+
 To build the image, navigate to the root directory of the project and run:
 
 ```bash
@@ -41,6 +43,7 @@ docker build -t <image_name> .
 ```
 
 ### Run the Docker Image
+
 To run the docker container with the environment variables, run:
 
 ```bash
@@ -48,6 +51,7 @@ docker run --env-file app/.env -p 8000:8000 <image_name>
 ```
 
 This command will:
+
 - Use the environment variables in the `.env` file
 - Map the container's port 8000 to the host's port 8000
 - Run the container in the background
@@ -61,30 +65,47 @@ The Project Management API is designed to facilitate the management of projects 
 
 ### Project Endpoints
 
-| Operation                | HTTP Method | Endpoint                   | Description                |
-|--------------------------|-------------|----------------------------|----------------------------|
-| **Create a new project** | `POST`      | `/projects/`               | Create a new project       |
-| **Retrieve a project**   | `GET`       | `/projects/{project_id}`   | Retrieve a specific project by ID |
-| **Update a project**     | `PUT`       | `/projects/{project_id}`   | Update a specific project by ID   |
-| **Delete a project**     | `DELETE`    | `/projects/{project_id}`   | Delete a specific project by ID   |
+| Operation                | HTTP Method | Endpoint                 | Description                       |
+| ------------------------ | ----------- | ------------------------ | --------------------------------- |
+| **Create a new project** | `POST`      | `/projects/`             | Create a new project              |
+| **Retrieve a project**   | `GET`       | `/projects/{project_id}` | Retrieve a specific project by ID |
+| **Update a project**     | `PUT`       | `/projects/{project_id}` | Update a specific project by ID   |
+| **Delete a project**     | `DELETE`    | `/projects/{project_id}` | Delete a specific project by ID   |
 
 ### Ticket Endpoints
 
-| Operation                | HTTP Method | Endpoint                   | Description                |
-|--------------------------|-------------|----------------------------|----------------------------|
-| **Create a new ticket**  |             |                            |                            |
-| **Retrieve a ticket**    |             |                            |                            |
-| **Update a ticket**      |             |                            |                            |
-| **Delete a ticket**      |             |                            |                            |
+| Operation               | HTTP Method | Endpoint | Description |
+| ----------------------- | ----------- | -------- | ----------- |
+| **Create a new ticket** |             |          |             |
+| **Retrieve a ticket**   |             |          |             |
+| **Update a ticket**     |             |          |             |
+| **Delete a ticket**     |             |          |             |
 
 ## Running the Application Locally
+
 To run the application locally, make sure you have Python installed. Then follow these steps at the root directory of the project:
 
 1. Install depdencies: `pip install -r requirements.txt`
 2. Run the application: `fastapi dev app/main.py` You may use `dev` or `prod` as the `fastapi` argument
 3. Navigate to `http://localhost:8000` to view the application
 
-* Note: The application will run in debug mode by default. To disable debug mode, set the `APP_ENV` environment variable to `prod`.
+- Note: The application will run in debug mode by default. To disable debug mode, set the `APP_ENV` environment variable to `prod`.
+
+To run the application with New Relic monitoring enabled, run the following:
+
+```
+newrelic-admin run-program uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+### With Docker
+
+1. `docker build --build-arg NEW_RELIC_LICENSE_KEY={set actual key here} -t taskmaster_api .`
+2. `docker run -d -p 8080:8080 taskmaster_api`
+
+**Note:** it is not safe to run the app in production with environment variables set this way
+
+[See Docker Docs](https://docs.docker.com/reference/build-checks/secrets-used-in-arg-or-env/)
 
 ## License
+
 This project is licensed under the MIT License. See the License file for details.
